@@ -21,3 +21,14 @@ class UserResponse(BaseModel):
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
+
+
+class PredictRequest(BaseModel):
+    Pregnancies: int = Field(ge=0)
+    Glucose: int = Field(ge=0)
+    BMI: float = Field(ge=0.0, le=100.0)
+    Age: int = Field(ge=0, le=120)
+
+
+class PredictResponse(BaseModel):
+    prediction: int

@@ -1,4 +1,6 @@
 fastapi
+numpy
+onnxruntime
 uvicorn[standard]
 python-multipart
 sqlalchemy
