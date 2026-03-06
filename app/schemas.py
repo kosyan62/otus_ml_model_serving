@@ -1,8 +1,9 @@
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
 class UserCreate(BaseModel):
     username: str = Field(min_length=1, max_length=64)
+    email: EmailStr
     password: str = Field(min_length=8, max_length=128)
 
 
@@ -14,6 +15,8 @@ class LoginRequest(BaseModel):
 class UserResponse(BaseModel):
     id: int
     username: str
+    email: str
+    role: str
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -21,6 +24,7 @@ class UserResponse(BaseModel):
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
+    expires_in: int  # seconds until expiry
 
 
 class PredictRequest(BaseModel):
@@ -31,4 +35,4 @@ class PredictRequest(BaseModel):
 
 
 class PredictResponse(BaseModel):
-    prediction: int
+    prediction: int = Field(ge=0, le=1)

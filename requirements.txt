@@ -6,5 +6,6 @@ python-multipart
 sqlalchemy
 passlib[bcrypt]
 python-jose[cryptography]
+pydantic[email]
 pytest
 httpx
